@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  tg-sniper-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: solana-tg-sniper-backend
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SOLANA_RPC_URL=${SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}
+    volumes:
+      - ./logs:/app/logs
+    command: ["demo"]
